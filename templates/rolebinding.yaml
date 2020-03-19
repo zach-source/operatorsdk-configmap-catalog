@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+# This role binding allows "jane" to read pods in the "default" namespace.
+kind: RoleBinding
+metadata:
+  name: {{ .Release.Name }}-role-binding
+subjects:
+- kind: ServiceAccount
+  name: {{ include "configmap-catalog.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role #this must be Role or ClusterRole
+  name: {{ .Release.Name }}-role # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io

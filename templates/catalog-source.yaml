@@ -1,0 +1,10 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: {{ include "configmap-catalog.fullname" . }}-source
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  displayName: "{{ .Values.catalogSource.displayname }}"
+  publisher: "{{ .Values.catalogSource.publisher }}"
+  address: {{ include "configmap-catalog.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.port }}

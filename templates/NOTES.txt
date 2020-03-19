@@ -1,0 +1,9 @@
+Your catalog source will is now installed. You can make sure it worked
+correctly by checking your console or by looking at the catalog source status by
+running this command.
+
+kube describe catalogsources.operators.coreos.com --namespace openshift-marketplace {{ include "configmap-catalog.fullname" . }}-source
+
+The connection status should eventually reach a READY status like below.
+
+Last Observed State:  READY

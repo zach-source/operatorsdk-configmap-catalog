@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  customResourceDefinitions: |-
+{{- template "filelist" (dict "dir" "operators/crds/*" "indent" 4 "files" .Files) }}
+  clusterServiceVersions: |-
+{{- template "filelist" (dict "dir" "operators/csvs/*" "indent" 4 "files" .Files) }}
+  packages: |-
+{{- template "filelist" (dict "dir" "operators/packages/*" "indent" 4 "files" .Files) }}
